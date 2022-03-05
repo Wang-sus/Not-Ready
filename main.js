@@ -59,7 +59,7 @@ UI.innerHTML = `
 }
 </style>
 </head>
-          <button onclick="bc()" class="button">Background Changer</button>
+          <button onclick="custombackground()" class="button">Background Changer</button>
           <br>
           <br>
           <button onclick="tc()" class="button">Title Changer</button>
@@ -111,18 +111,23 @@ function dragElement(e) {
 
 //custom background
 
-function bc() {
-  let lol = getCookie("urllol");
-navigator.clipboard.writeText=lol;
-    lol = prompt("Custom Background! Please put the image link into the box below!");
-    if (lol != "" && lol != null) {
-      setCookie("urllol", lol, 365);
-    }
-setInterval(function() {
-document.getElementById("background-image").src=lol;
-document.getElementById("ThemeLayoutWrapper").innerHTML = '<span type="grid"><button tabindex="0" aria-label="Blue cartoon background" aria-current="true" class="css-1wz223u e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_06_small.e4a98eaa.jpg" class="backgroundImg" id="Background_06" alt="Blue cartoon background"></button></span><span type="grid"><button tabindex="0" aria-label="Alligator background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_03_small.a03039d1.jpg" class="backgroundImg" id="Background_03" alt="Alligator background"></button></span><span type="grid"><button tabindex="0" aria-label="Victor background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_08_small.95fbc6ef.jpg" class="backgroundImg" id="Background_08" alt="Victor background"></button></span><span type="grid"><button tabindex="0" aria-label="Leopard background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_05_small.59daef81.jpg" class="backgroundImg" id="Background_05" alt="Leopard background"></button></span><span type="grid"><button tabindex="0" aria-label="Earth in space background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_02_small.e7b0d99c.jpg" class="backgroundImg" id="Background_02" alt="Earth in space background"></button></span><span type="grid"><button tabindex="0" aria-label="Snargg background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_09_small.a9fbde7d.jpg" class="backgroundImg" id="Background_09" alt="Snargg background"></button></span><span type="grid"><button tabindex="0" aria-label="Lightning cat background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_07_small.db7e14db.jpg" class="backgroundImg" id="Background_07" alt="Lightning cat background"></button></span><span type="grid"><button tabindex="0" aria-label="Green geometric shapes background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_01_small.243ef7ab.jpg" class="backgroundImg" id="Background_01" alt="Green geometric shapes background"></button></span><span type="grid"><button tabindex="0" aria-label="Pepper Jackie background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_10_small.19aaddc3.jpg" class="backgroundImg" id="Background_10" alt="Pepper Jackie background"></button></span><span type="grid"><button tabindex="0" aria-label="Car background" aria-current="false" class="css-1idt1b4 e755wfp0"><img src="https://cdn.i-ready.com/instruction/student-dashboard/release-2.15.x/4/static/media/background_3-8_04_small.13fda759.jpg" class="backgroundImg" id="Background_04" alt="Car background"></button></span><span type="grid"><button tabindex="0" aria-label="Custom background" aria-current="true" class="css-1wz223u e755wfp0"><img src = lol class="backgroundImg" id="Background" alt="Custom"></button></span>'
-}, 1);
+function customtheme() {
+document.getElementById("ThemeLayoutWrapper").innerHTML = '<span type="grid"><button tabindex="0" aria-label="Custom background" aria-current="true" class="css-1wz223u e755wfp0"><img src = bg class="CbackgroundImg" id="Background" alt="Custom"></button></span>'
 }
+
+
+function custombackground() {
+let bc = prompt("Please put the image URL in the box");
+setInterval(function() {
+document.getElementById("background-image").src=bc;
+customtheme()
+document.getElementById("Background").src = document.getElementById("background-image").src;
+}, 5000);
+customtheme()
+document.getElementById("background-image").src=bc;
+document.getElementById("Background").src = document.getElementById("background-image").src;
+}
+
 
 //title changer
 function tc() {
