@@ -166,3 +166,8 @@ document.body.appendChild(UI)
 document.addEventListener("keydown", function(e) {
         e.ctrlKey && "x" == e.key && ("block" == LoL.style.display ? LoL.style.display = "none" : LoL.style.display = "block")
 })
+
+const API = {
+  get game() { return document.getElementById('game').contentWindow },
+  get lesson() { return document.getElementById('html5Iframe').contentWindow.parent.lessonBridge }
+}
