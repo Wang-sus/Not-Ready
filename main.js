@@ -1,17 +1,18 @@
+// creates UI
 var UI = document.createElement("div");
 UI.innerHTML = `
-	<div id="LoL" class="Lol" style="border: 1px solid #1e2124; opacity: 0.9; border-radius: 5px; width:200px; width:200px; left: 740px; top: 100px; background-color: #2C2F33; color: white; position:absolute; z-index: 99999;">
-		<h1 style="font-size: 25px;"><center>Hacks</center></h1>
-    <h1 style="font-size: 15px;"><center>press ctrl+X to hide menu</center></h1>
-<head>
+		<div id="Menu" class="Menu" style="border: 1px solid #1e2124; opacity: 0.9; border-radius: 5px; width:200px; width:200px; left: 740px; top: 100px; background-color: #2C2F33; color: white; position:absolute; z-index: 99999;">
+		<h1 style="font-size: 32px;"><center>Lesson</center></h1>
+		<br>
+		<head>
 <style>
-.LoL {
+.Menu {
   --borderWidth: 3px;
   background: #000000;
   position: relative;
   border-radius: var(--borderWidth);
 }
-.LoL:after {
+.Menu:after {
   content: '';
   position: absolute;
   top: calc(-1 * var(--borderWidth));
@@ -24,6 +25,8 @@ UI.innerHTML = `
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
 }
+
+
 @keyframes animatedgradient {
 	0% {
 		background-position: 0% 50%;
@@ -35,6 +38,10 @@ UI.innerHTML = `
 		background-position: 0% 50%;
 	}
 }
+
+
+
+
 .button {
   border: none;
   color: white;
@@ -49,118 +56,74 @@ UI.innerHTML = `
   color: black; 
   background-color:#6d80c4;
 }
+
 .button:hover {
   background-color:#abb4ff;
 }
+
 .button:active {
   box-shadow: 0 2px #666;
   transform: translateY(2px);
   background-color: #7d8bfa;
 }
+
 </style>
 </head>
-          
-          <button onclick="fc()" class="button">Lesson $kipper</button>
-          <br>
-          <br>
-          <button onclick="fc()" class="button">Minute F@rm</button>
-          <br>
-          <br>
-          <button onclick="tl()" class="button">Top leaderboard</button>
-          <br>
-          <br>
-
+		<button onclick="TM()" class="button">Enable Teacher Menu</button>
+		<br>
+		<br>
+		<br>
 	</div>`
+
+// shamelessly stolen from https://www.w3schools.com/howto/howto_js_draggable.asp
+//Make the DIV element draggagle:
 dragElement(UI.firstElementChild);
 document.body.appendChild(UI);
 
-var UI = document.createElement("div");
-UI.innerHTML = `
-	<div id="LoL" class="Lol" style="border: 1px solid #1e2124; opacity: 0.9; border-radius: 5px; width:200px; width:200px; left: 740px; top: 100px; background-color: #2C2F33; color: white; position:absolute; z-index: 99999;">
-		<h1 style="font-size: 25px;"><center>Visual</center></h1>
-    <h1 style="font-size: 15px;"><center>press ctrl+X to hide menu</center></h1>
-          <button onclick="custombackground()" class="button">Background Changer</button>
-          <br>
-          <br>
-          <button onclick="tc()" class="button">Title Changer</button>
-          <br>
-          <br>
-          <button onclick="fc()" class="button">Icon Changer</button>
-          <br>
-          <br>
+function dragElement(elmnt) {
+	var pos1 = 0,
+		pos2 = 0,
+		pos3 = 0,
+		pos4 = 0;
+	if (document.getElementById(elmnt.id + "header")) {
+		/* if present, the header is where you move the DIV from:*/
+		document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+	} else {
+		/* otherwise, move the DIV from anywhere inside the DIV:*/
+		elmnt.onmousedown = dragMouseDown;
+	}
 
-	</div>`
-dragElement(UI.firstElementChild);
-document.body.appendChild(UI);
+	function dragMouseDown(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// get the mouse cursor position at startup:
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		document.onmouseup = closeDragElement;
+		// call a function whenever the cursor moves:
+		document.onmousemove = elementDrag;
+	}
 
-var UI = document.createElement("div");
-UI.innerHTML = `
-	<div id="LoL" class="Lol" style="border: 1px solid #1e2124; opacity: 0.9; border-radius: 5px; width:200px; width:200px; left: 740px; top: 100px; background-color: #2C2F33; color: white; position:absolute; z-index: 99999;">
-		<h1 style="font-size: 25px;"><center>Games</center></h1>
-    <h1 style="font-size: 15px;"><center>press ctrl+X to hide menu</center></h1>
-          <button onclick="fc()" class="button">Free Games</button>
-          <br>
-          <br>
+	function elementDrag(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// calculate the new cursor position:
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		// set the element's new position:
+		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
 
-	</div>`
-dragElement(UI.firstElementChild);
-document.body.appendChild(UI);
-
-//drag
-function dragElement(e) {
-    let t = 0,
-        n = 0,
-        o = 0,
-        s = 0;
-    function i(e) {
-        (e = e || window.event)
-        .preventDefault(), o = e.clientX, s = e.clientY, document.onmouseup = c, document.onmousemove = r
-    }
-    function r(i) {
-        (i = i || window.event)
-        .preventDefault(), t = o - i.clientX, n = s - i.clientY, o = i.clientX, s = i.clientY, e.style.top = e.offsetTop - n + "px", e.style.left = e.offsetLeft - t + "px"
-    }
-    function c() {
-        document.onmouseup = null, document.onmousemove = null
-    }
-    document.getElementById(e.id + "header") ? document.getElementById(e.id + "header")
-        .onmousedown = i : e.onmousedown = i
+	function closeDragElement() {
+		/* stop moving when mouse button is released:*/
+		document.onmouseup = null;
+		document.onmousemove = null;
+	}
 }
-
-
-document.body.appendChild(UI)
-document.addEventListener("keydown", function(e) {
-        e.ctrlKey && "x" == e.key && ("block" == LoL.style.display ? LoL.style.display = "none" : LoL.style.display = "block")
-})
-
-//custom background
-
-function customtheme() {
-document.getElementById("ThemeLayoutWrapper").innerHTML = '<span type="grid"><button tabindex="0" aria-label="Custom background" aria-current="true" class="css-1wz223u e755wfp0"><img src = bg class="CbackgroundImg" id="Background" alt="Custom"></button></span>'
+function TM() {
+  var cheats = document.getElementsByTagName('iframe')[0].contentWindow.localStorage.cheats;
+    cheats = "{\"showMenu\":false}";
 }
-
-
-function custombackground() {
-let bc = prompt("Please put the image URL in the box");
-setInterval(function() {
-document.getElementById("background-image").src=bc;
-customtheme()
-document.getElementById("Background").src = document.getElementById("background-image").src;
-}, 5000);
-customtheme()
-document.getElementById("background-image").src=bc;
-document.getElementById("Background").src = document.getElementById("background-image").src;
-}
-
-
-//title changer
-function tc() {
-var o = prompt("Custom Title! Please put the title into the box below!")
-document.title =o;
-}
-//favicon changer
-function fc() {
-var ffc = prompt('Custom Icon! Please put the image link in the box below!')
-document.querySelector("link[rel*='icon']").href =ffc;
-}
-
